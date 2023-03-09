@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const port = 3001
 
-app.listen(port, console.log(`Server is running on port ${port}.`))
+app.listen(port, () => console.log(`Server is running on port ${port}.`))
 
 const persons = [
     {
@@ -30,4 +30,9 @@ const persons = [
 
 app.get("/api/persons", (req, res) => {
     res.json(persons)
+})
+
+app.get("/info", (req, res) => {
+    const currentTime = new Date();
+    res.send(`Phonebook has info for ${persons.length} people. <br/> ${currentTime}`)
 })
