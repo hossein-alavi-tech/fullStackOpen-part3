@@ -1,0 +1,19 @@
+{
+  "name": "fullstackopen-part3",
+  "version": "1.0.0",
+  "description": "Exercises for part3 of the FullStackOpen.com course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Hossein Alavi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
