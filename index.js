@@ -1,3 +1,4 @@
+const { response } = require("express")
 const express = require("express")
 
 const app = express()
@@ -54,3 +55,20 @@ app.get("/info", (req, res) => {
     const currentTime = new Date();
     res.send(`Phonebook has info for ${persons.length} people. <br/> ${currentTime}`)
 })
+
+
+const generateId = () => {
+    return Math.floor(Math.random()*1000)+1
+  }
+
+app.use(express.json())
+app.post("/api/persons", (req, res) => {
+    let contact = req.body
+    contact = {
+        id: generateId(),
+        name: contact.name,
+        number: contact.number
+    }
+    persons = persons.concat(contact)
+    res.json(persons)
+}) 
