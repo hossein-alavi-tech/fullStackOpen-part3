@@ -58,17 +58,26 @@ app.get("/info", (req, res) => {
 
 
 const generateId = () => {
-    return Math.floor(Math.random()*1000)+1
-  }
+    return Math.floor(Math.random() * 1000) + 1
+}
 
 app.use(express.json())
 app.post("/api/persons", (req, res) => {
-    let contact = req.body
+    let body = req.body
+    if (!body.name) {
+        return res.status(400).json({ error: 'name is missing' })
+    }
+    if (!body.number) {
+        return res.status(400).json({ error: 'number is missing' })
+    }
+    if (persons.find(contact => contact.name === body.name)) {
+        return res.status(400).json({ error: 'name must be unique' })
+    }
     contact = {
         id: generateId(),
-        name: contact.name,
-        number: contact.number
+        name: body.name,
+        number: body.number
     }
     persons = persons.concat(contact)
     res.json(persons)
-}) 
+})
